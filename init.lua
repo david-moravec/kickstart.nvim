@@ -113,8 +113,14 @@ require('lazy').setup({
     },
   },
 
+  -- Telescope file browser
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
+
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -222,10 +228,30 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  -- {
+  --   'stevearc/conform.nvim',
+  --   opts = {},
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   config = function()
+  --     local conform = require("conform")
+  --
+  --     conform.setup({
+  --       formatters_by_ft = {
+  --         python = { "prettier", "black" },
+  --       },
+  --       format_on_save = {
+  --         -- These options will be passed to conform.format()
+  --         timeout_ms = 500,
+  --         lsp_fallback = true,
+  --       },
+  --     })
+  --   end,
+  -- },
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -240,6 +266,13 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+require("telescope").load_extension "file_browser"
+vim.api.nvim_set_keymap(
+  "n",
+  "<space>fb",
+  ":Telescope file_browser<CR>",
+  { noremap = true }
+)
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -350,7 +383,7 @@ local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
     require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
+      search_dirs = { git_root },
     })
   end
 end
@@ -609,3 +642,4 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
