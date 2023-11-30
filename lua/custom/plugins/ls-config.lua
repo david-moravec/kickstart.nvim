@@ -1,8 +1,6 @@
 local null_ls = require("null-ls")
 
 
-print('ahoj')
-
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = {

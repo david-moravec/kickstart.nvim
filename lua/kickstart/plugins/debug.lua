@@ -2,7 +2,6 @@
 --
 -- Shows how to use the DAP plugin to debug your code.
 --
--- Primarily focused on configuring the debugger for Go, but can
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
@@ -19,7 +18,7 @@ return {
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
-    'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
   },
   config = function()
     local dap = require 'dap'
@@ -39,6 +38,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
       },
     }
 
@@ -81,7 +81,44 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    -- Install golang specific config
-    require('dap-go').setup()
+    -- PYTHON debug setup
+    local python_dap = require('dap-python')
+    python_dap.setup('E:/Data/pwrc2/venv/Scripts/python.exe')
+    table.insert(require('dap').configurations.python, {
+      type = 'python',
+      request = 'launch',
+      name = 'debug pwrc2',
+      module = 'E:/Data/pwrc2/pwrc2',
+      python = 'E:/Data/pwrc2/venv/Scritpts/python.exe'
+    })
+    python_dap.test_runner = 'pytest'
+
+    -- Rust debug setup
+
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = "${port}",
+      executable = {
+        command = "C:/Users/moravec/AppData/Local/nvim-data/mason/bin/codelldb.CMD",
+        args = {"--port", "${port}"},
+        detached = "false",
+      }
+    }
+
+    dap.configurations.rust = {
+      {
+        name = "Launch default executable",
+        type = "codelldb",
+        request = "launch",
+        program = function()
+          vim.fn.jobstart('cargo build')
+          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        showDisassembly = "never",
+        terminal = 'integrated',
+    }
+  }
   end,
 }
