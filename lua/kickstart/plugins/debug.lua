@@ -88,8 +88,8 @@ return {
       type = 'python',
       request = 'launch',
       name = 'debug pwrc2',
-      module = 'E:/Data/pwrc2/pwrc2',
-      python = 'E:/Data/pwrc2/venv/Scritpts/python.exe'
+      module = 'pwrc2',
+      python = 'E:/Data/pwrc2/venv/Scripts/python.exe'
     })
     python_dap.test_runner = 'pytest'
 
