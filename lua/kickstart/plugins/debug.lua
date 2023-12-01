@@ -89,7 +89,9 @@ return {
       request = 'launch',
       name = 'debug pwrc2',
       module = 'pwrc2',
-      python = 'E:/Data/pwrc2/venv/Scripts/python.exe'
+      python = function()
+        return vim.fn.getcwd() .. '/venv/Scripts/python.exe'
+      end,
     })
     python_dap.test_runner = 'pytest'
 
