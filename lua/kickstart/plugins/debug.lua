@@ -93,7 +93,16 @@ return {
         return vim.fn.getcwd() .. '/venv/Scripts/python.exe'
       end,
     })
-    python_dap.test_runner = 'pytest'
+    table.insert(require('dap').configurations.python, {
+      type = 'python',
+      request = 'launch',
+      name = 'debug tests venv',
+      module = 'pytest',
+      args = {"tests"},
+      python = function()
+        return vim.fn.getcwd() .. '/venv/Scripts/python.exe'
+      end,
+    })
 
     -- Rust debug setup
 
