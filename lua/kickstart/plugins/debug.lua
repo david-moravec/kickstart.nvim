@@ -106,7 +106,7 @@ return {
 
     -- Rust debug setup
 
-    dap.adapters.codelldb = {
+    require('dap').adapters.codelldb = {
       type = 'server',
       port = "${port}",
       executable = {
@@ -129,7 +129,22 @@ return {
         stopOnEntry = false,
         showDisassembly = "never",
         terminal = 'integrated',
+      },
+      {
+        name = "launch tests",
+        type = "codelldb",
+        request = "launch",
+        mode = "test",
+        program = function()
+          vim.fn.jobstart('cargo build')
+          return vim.fn.input('Path to compiled tests: ', vim.fn.getcwd() .. '/target/debug/deps', 'file')
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        showDisassembly = "never",
+        terminal = 'integrated',
+      }
     }
-  }
+
   end,
 }
