@@ -31,6 +31,11 @@ require('lazy').setup({
   'sindrets/diffview.nvim',
   require 'custom.plugins.lazygit',
 
+  -- Testing
+  require 'custom.plugins.neotest',
+  require 'custom.plugins.autopairs',
+
+
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
   'ThePrimeagen/vim-be-good',
@@ -205,7 +210,7 @@ vim.api.nvim_set_keymap(
 
 
 -- Set highlight on search
-vim.o.hlsearch = true
+vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true

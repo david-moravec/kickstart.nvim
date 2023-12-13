@@ -1,18 +1,21 @@
 return {
     'nvim-neotest/neotest',
+    'nvim-neotest/neotest-python',
     dependencies = {
-        'nvim-lua/plenare.nvim',
+        'nvim-lua/plenary.nvim',
         'antoinemadec/FixCursorHold.nvim'
     },
 
-    require('neotest').setup({
-        adapters = {
-            require('neotest-python')({
-                dap = { justMyCode = true },
-                args = {'--log-level', 'DEBUG'},
-                runner = 'pytest',
-                python = '.venv/Scripts/python.exe',
-            })
-        }
-    })
+    config = function()
+        require('neotest').setup({
+            adapters = {
+                require('neotest-python')({
+                    dap = { justMyCode = true },
+                    args = {'--log-level', 'DEBUG'},
+                    runner = 'pytest',
+                    python = '.venv/Scripts/python.exe',
+                })
+            }
+        })
+    end,
 }
