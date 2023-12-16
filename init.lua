@@ -31,6 +31,7 @@ require('lazy').setup({
   'sindrets/diffview.nvim',
   require 'custom.plugins.lazygit',
   require 'custom.plugins.zenmode',
+  require 'custom.plugins.fterm',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
