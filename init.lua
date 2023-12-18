@@ -30,6 +30,8 @@ require('lazy').setup({
   'tpope/vim-rhubarb',
   'sindrets/diffview.nvim',
   require 'custom.plugins.lazygit',
+  require 'custom.plugins.zenmode',
+  require 'custom.plugins.fterm',
 
   -- Testing
   require 'custom.plugins.neotest',
