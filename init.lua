@@ -33,9 +33,10 @@ require('lazy').setup({
   require 'custom.plugins.zenmode',
   require 'custom.plugins.fterm',
 
-  -- Testing
   require 'custom.plugins.neotest',
   require 'custom.plugins.autopairs',
+
+  'RRethy/vim-illuminate',
 
 
   -- Detect tabstop and shiftwidth automatically
