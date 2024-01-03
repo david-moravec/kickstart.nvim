@@ -37,6 +37,8 @@ require('lazy').setup({
 
   require 'custom.plugins.autopairs',
 
+  'RRethy/vim-illuminate',
+
 
   'tpope/vim-sleuth',
   'ThePrimeagen/vim-be-good',
