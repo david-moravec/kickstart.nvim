@@ -36,6 +36,7 @@ require('lazy').setup({
 
 
   require 'custom.plugins.autopairs',
+  require 'custom.plugins.surround',
 
   'RRethy/vim-illuminate',
 
