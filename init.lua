@@ -519,7 +519,7 @@ cmp.setup {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<C-k>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
@@ -547,6 +547,7 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
 
 require 'custom.plugins.ls-config'
 -- The line beneath this is called `modeline`. See `:help modeline`
