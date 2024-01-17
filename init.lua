@@ -31,6 +31,7 @@ require('lazy').setup({
   require 'custom.plugins.lazygit',
   require 'custom.plugins.zenmode',
   require 'custom.plugins.fterm',
+  require 'custom.plugins.leap',
 
   require 'custom.plugins.harpoon',
 
