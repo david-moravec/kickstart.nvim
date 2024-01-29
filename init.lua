@@ -69,7 +69,6 @@ require('lazy').setup({
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
-      'rafamadriz/friendly-snippets',
     },
   },
 
@@ -546,8 +545,10 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = 'luasnip',  priority = 40 },
+    { name = 'nvim_lsp', priority = 30 },
+    { name = 'buffer',   priority = 20 },
+    { name = 'path',     priority = 10 },
   },
 }
 
